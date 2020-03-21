@@ -1,24 +1,28 @@
-package io.github.proudust.minecraftforgekotlintemplate
+package de.wulkanat.www.newfrontiers
 
+import de.wulkanat.www.newfrontiers.blocks.NFBlock
+import de.wulkanat.www.newfrontiers.blocks.SpaceTeleporter
 import net.minecraft.block.Block
 import net.minecraft.item.Item
+import net.minecraft.item.ItemBlock
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
+import net.minecraftforge.fml.common.registry.GameRegistry
 
 @Mod(
-    modid = MinecraftForgeKotlinTemplate.MOD_ID,
-    name = MinecraftForgeKotlinTemplate.MOD_NAME,
-    version = MinecraftForgeKotlinTemplate.VERSION,
+    modid = NewFrontiers.MOD_ID,
+    name = NewFrontiers.MOD_NAME,
+    version = NewFrontiers.VERSION,
     modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
-object MinecraftForgeKotlinTemplate {
-    const val MOD_ID = "minecraft-forge-kotlin-template"
-    const val MOD_NAME = "Minecraft Forge Kotlin Template"
-    const val VERSION = "2019.1-1.2.23"
+object NewFrontiers {
+    const val MOD_ID = "new-frontiers"
+    const val MOD_NAME = "New Frontiers"
+    const val VERSION = "1.0-SNAPSHOT"
 
     /**
      * This is the first initialization event. Register tile entities here.
@@ -34,7 +38,6 @@ object MinecraftForgeKotlinTemplate {
      */
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent) {
-
     }
 
     /**
@@ -48,37 +51,35 @@ object MinecraftForgeKotlinTemplate {
     /**
      * This is a special class that listens to registry events, to allow creation of mod blocks and items at the proper time.
      */
-    @Mod.EventBusSubscriber
+    @Mod.EventBusSubscriber(modid = MOD_ID)
     object ObjectRegistryHandler {
+        private val blocks: Array<NFBlock> = arrayOf(
+            SpaceTeleporter(MOD_ID, "space_teleporter")
+        )
+
         /**
          * Listen for the register event for creating custom items
          */
         @SubscribeEvent
+        @JvmStatic
         fun addItems(event: RegistryEvent.Register<Item>) {
-            /*
-            event.registry.register(ItemBlock(MySpecialBlock).setRegistryName(MOD_ID, "myBlock"))
-            event.registry.register(MySpecialItem.setRegistryName(MOD_ID, "mySpecialItem"))
-            */
+            for (block in blocks) {
+                if (block.hasItemBlock) {
+                    event.registry.register(ItemBlock(block).setRegistryName(block.registryName))
+                }
+            }
+            // TODO: register items
         }
 
         /**
          * Listen for the register event for creating custom blocks
          */
         @SubscribeEvent
+        @JvmStatic
         fun addBlocks(event: RegistryEvent.Register<Block>) {
-            /*
-            event.registry.register(MySpecialBlock.setRegistryName(MOD_ID, "mySpecialBlock"))
-            */
+            for (block in blocks) {
+                event.registry.register(block)
+            }
         }
     }
-
-    /* EXAMPLE ITEM AND BLOCK - you probably want these in separate files
-    object MySpecialItem : Item() {
-
-    }
-
-    object MySpecialBlock : Block() {
-
-    }
-    */
 }
