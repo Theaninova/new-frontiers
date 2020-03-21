@@ -14,10 +14,14 @@ buildscript {
         maven(url = "https://files.minecraftforge.net/maven") {
             name = "forge"
         }
+        maven(url = "http://maven.shadowfacts.net/") {
+            name = "forgelin"
+        }
     }
     dependencies {
         classpath("net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50")
+        classpath("net.shadowfacts:Forgelin:1.8.4")
     }
 }
 
