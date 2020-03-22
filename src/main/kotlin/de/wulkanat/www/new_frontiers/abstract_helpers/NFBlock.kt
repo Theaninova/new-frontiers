@@ -4,8 +4,13 @@ import de.wulkanat.www.new_frontiers.NewFrontiers
 import de.wulkanat.www.new_frontiers.proxy.registerItemRenderer
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
+import net.minecraft.block.state.IBlockState
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.Item
+import net.minecraft.util.EnumFacing
+import net.minecraft.util.EnumHand
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 abstract class NFBlock(
@@ -13,6 +18,7 @@ abstract class NFBlock(
     val collidable: Boolean = true,
     val tickRate: Int = 10,
     val hasCustomModel: Boolean = true,
+    val onClick: (ClickParameters) -> Boolean = { false },
     material: Material,
     hardness: Float = 1.0F,
     resistance: Float = 1.0F,
@@ -45,7 +51,25 @@ abstract class NFBlock(
         return tickRate
     }
 
+    override fun onBlockActivated(world: World, pos: BlockPos, state: IBlockState, playerIn: EntityPlayer, hand: EnumHand, sode: EnumFacing, x: Float, y: Float, z: Float): Boolean {
+        if (world.isRemote) return true
+
+        return onClick(ClickParameters(world, pos, state, playerIn, hand, sode, x, y, z))
+    }
+
     fun registerModels() {
         registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory")
     }
+
+    class ClickParameters(
+        val world: World,
+        val pos: BlockPos,
+        val state: IBlockState,
+        val player: EntityPlayer,
+        val hand: EnumHand,
+        val sode: EnumFacing,
+        val x: Float,
+        val y: Float,
+        val z: Float
+    )
 }
