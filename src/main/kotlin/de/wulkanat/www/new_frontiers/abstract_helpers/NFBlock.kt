@@ -1,15 +1,18 @@
 package de.wulkanat.www.new_frontiers.abstract_helpers
 
 import de.wulkanat.www.new_frontiers.NewFrontiers
+import de.wulkanat.www.new_frontiers.proxy.registerItemRenderer
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.item.Item
 import net.minecraft.world.World
 
 abstract class NFBlock(
     val hasItemBlock: Boolean = true,
     val collidable: Boolean = true,
     val tickRate: Int = 10,
+    val hasCustomModel: Boolean = true,
     material: Material,
     hardness: Float = 1.0F,
     resistance: Float = 1.0F,
@@ -40,5 +43,9 @@ abstract class NFBlock(
 
     override fun tickRate(p_tickRate_1_: World): Int {
         return tickRate
+    }
+
+    fun registerModels() {
+        registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory")
     }
 }

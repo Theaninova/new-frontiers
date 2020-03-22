@@ -63,10 +63,16 @@ object NewFrontiers {
 
         @SubscribeEvent
         @JvmStatic
-        fun registerModels(even: ModelRegistryEvent) {
+        fun registerModels(event: ModelRegistryEvent) {
             for (item in Items.values()) {
                 if (item.value.hasCustomModel) {
                     item.value.registerModels()
+                }
+            }
+
+            for (block in Blocks.values()) {
+                if (block.value.hasCustomModel) {
+                    block.value.registerModels()
                 }
             }
         }

@@ -1,5 +1,7 @@
 tile.space_teleporter.name=Space Teleporter
 tile.ftl_drive.name=FTL Drive
 
+item.test_item.name=Test Item
+
 itemGroup.nf_blocks=New Frontiers Blocks
 itemGroup.nf_items=New Frontiers Items

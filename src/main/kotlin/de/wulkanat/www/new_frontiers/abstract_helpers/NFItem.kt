@@ -8,7 +8,7 @@ import net.minecraft.item.Item
 abstract class NFItem(
     name: String,
     creativeTab: CreativeTabs = de.wulkanat.www.new_frontiers.init.CreativeTabs.NF_ITEMS.value,
-    val hasCustomModel: Boolean = false
+    val hasCustomModel: Boolean = true
 ) : Item() {
     init {
         setRegistryName("${NewFrontiers.MOD_ID}:$name")
