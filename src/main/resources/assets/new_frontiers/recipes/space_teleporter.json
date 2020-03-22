@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " d ",
+        "oxo",
+        "ooo"
+    ],
+    "key": {
+        "d": {
+            "item": "minecraft:diamond"
+        },
+        "o": {
+            "item": "minecraft:obsidian"
+        },
+        "x": {
+            "item": "minecraft:coal"
+        }
+    },
+    "result": {
+        "item": "new_frontiers:space_teleporter",
+        "count": 1
+    }
+}

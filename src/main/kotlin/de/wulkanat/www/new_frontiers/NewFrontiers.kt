@@ -1,17 +1,20 @@
-package de.wulkanat.www.newfrontiers
+package de.wulkanat.www.new_frontiers
 
-import de.wulkanat.www.newfrontiers.blocks.NFBlock
-import de.wulkanat.www.newfrontiers.blocks.SpaceTeleporter
+import de.wulkanat.www.new_frontiers.blocks.FTLDrive
+import de.wulkanat.www.new_frontiers.blocks.NFBlock
+import de.wulkanat.www.new_frontiers.blocks.SpaceTeleporter
+import de.wulkanat.www.new_frontiers.dimensions.Space
 import net.minecraft.block.Block
 import net.minecraft.item.Item
 import net.minecraft.item.ItemBlock
+import net.minecraft.world.DimensionType
+import net.minecraftforge.common.DimensionManager
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
-import net.minecraftforge.fml.common.registry.GameRegistry
 
 @Mod(
     modid = NewFrontiers.MOD_ID,
@@ -20,9 +23,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry
     modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
 object NewFrontiers {
-    const val MOD_ID = "new-frontiers"
+    const val MOD_ID = "new_frontiers"
     const val MOD_NAME = "New Frontiers"
     const val VERSION = "1.0-SNAPSHOT"
+
+    val NF_CREATIVE_TAB = NFCreativeTabs()
 
     /**
      * This is the first initialization event. Register tile entities here.
@@ -30,7 +35,8 @@ object NewFrontiers {
      */
     @Mod.EventHandler
     fun preinit(event: FMLPreInitializationEvent) {
-
+        val a = DimensionType.register("Space", "_space", 2, Space::class.java, false)
+        DimensionManager.registerDimension(2, a)
     }
 
     /**
@@ -53,8 +59,9 @@ object NewFrontiers {
      */
     @Mod.EventBusSubscriber(modid = MOD_ID)
     object ObjectRegistryHandler {
-        private val blocks: Array<NFBlock> = arrayOf(
-            SpaceTeleporter(MOD_ID, "space_teleporter")
+        val blocks: Array<NFBlock> = arrayOf(
+            SpaceTeleporter(),
+            FTLDrive()
         )
 
         /**

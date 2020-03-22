@@ -1,6 +1,6 @@
 [
     {
-        "modid": "new-frontiers",
+        "modid": "new_frontiers",
         "name": "New Frontiers",
         "description": "Make Minecraft a true Space Exploation Game",
         "version": "${version}",
