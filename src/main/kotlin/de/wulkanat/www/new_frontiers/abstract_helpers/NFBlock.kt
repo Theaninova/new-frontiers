@@ -1,4 +1,4 @@
-package de.wulkanat.www.new_frontiers.blocks
+package de.wulkanat.www.new_frontiers.abstract_helpers
 
 import de.wulkanat.www.new_frontiers.NewFrontiers
 import net.minecraft.block.Block
@@ -16,7 +16,7 @@ abstract class NFBlock(
     lightLevel: Int = 0,
     lightOpacity: Int = 0,
     name: String,
-    creativeTabs: CreativeTabs = NewFrontiers.NF_CREATIVE_TAB
+    creativeTab: CreativeTabs = de.wulkanat.www.new_frontiers.init.CreativeTabs.NF_BLOCKS.value
     ) : Block(material) {
     init {
         // The Java code is a lot of hot garbage, so most of this is copied from the setter functions
@@ -31,7 +31,7 @@ abstract class NFBlock(
         this.translationKey = name
         this.lightValue = lightLevel
         this.lightOpacity = lightOpacity
-        this.creativeTab = creativeTabs
+        this.creativeTab = creativeTab
     }
 
     override fun isCollidable(): Boolean {
