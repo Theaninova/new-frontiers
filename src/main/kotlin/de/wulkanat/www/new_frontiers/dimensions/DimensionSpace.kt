@@ -8,7 +8,7 @@ import net.minecraft.world.gen.IChunkGenerator
 
 class DimensionSpace : NFDimension(
     name = "space",
-    id = 2,
+    id = 40000,
     canRespawn = true,
     surfaceDimension = false,
     biomeProvider = BiomeProviderSingle(Biomes.DEEP_SPACE.value)

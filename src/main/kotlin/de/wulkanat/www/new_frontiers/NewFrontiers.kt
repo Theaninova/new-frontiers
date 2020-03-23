@@ -5,6 +5,7 @@ import de.wulkanat.www.new_frontiers.init.Items
 import de.wulkanat.www.new_frontiers.init.registerBiomes
 import de.wulkanat.www.new_frontiers.init.registerDimensions
 import net.minecraft.block.Block
+import net.minecraft.client.main.Main
 import net.minecraft.item.Item
 import net.minecraft.item.ItemBlock
 import net.minecraftforge.client.event.ModelRegistryEvent
@@ -25,6 +26,9 @@ object NewFrontiers {
     const val MOD_ID = "new_frontiers"
     const val MOD_NAME = "New Frontiers"
     const val VERSION = "1.0-SNAPSHOT"
+
+    @Mod.Instance
+    lateinit var instance: Main
 
     @Mod.EventHandler
     fun preinit(event: FMLPreInitializationEvent) {

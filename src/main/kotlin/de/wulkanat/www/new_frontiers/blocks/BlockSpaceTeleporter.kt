@@ -13,7 +13,7 @@ class BlockSpaceTeleporter : NFBlock(
 
     onClick = {
         if (it.player is EntityPlayerMP) {
-            it.player.changeDimension(2)
+            it.player.changeDimension(40000)
             it.player.setPositionAndUpdate(0.0, 0.0, 0.0)
             true
         } else {
