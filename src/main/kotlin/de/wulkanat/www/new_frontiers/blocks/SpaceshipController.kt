@@ -11,7 +11,7 @@ class SpaceshipController : NFBlock(
     facingDirections = BlockHorizontal.FACING,
 
     onClick = {
-        it.player.openGui(NewFrontiers.instance, 0, it.world, it.pos.x, it.pos.y, it.pos.z)
+        it.player.openGui(NewFrontiers, 0, it.world, it.pos.x, it.pos.y, it.pos.z)
         true
     }
 )

@@ -1,9 +1,6 @@
 package de.wulkanat.www.new_frontiers
 
-import de.wulkanat.www.new_frontiers.init.Blocks
-import de.wulkanat.www.new_frontiers.init.Items
-import de.wulkanat.www.new_frontiers.init.registerBiomes
-import de.wulkanat.www.new_frontiers.init.registerDimensions
+import de.wulkanat.www.new_frontiers.init.*
 import net.minecraft.block.Block
 import net.minecraft.client.main.Main
 import net.minecraft.item.Item
@@ -14,22 +11,16 @@ import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
 @Mod(
-    modid = NewFrontiers.MOD_ID,
-    name = NewFrontiers.MOD_NAME,
-    version = NewFrontiers.VERSION,
+    modid = MOD_ID,
+    name = MOD_NAME,
+    version = VERSION,
     modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
 object NewFrontiers {
-    const val MOD_ID = "new_frontiers"
-    const val MOD_NAME = "New Frontiers"
-    const val VERSION = "1.0-SNAPSHOT"
-
-    @Mod.Instance
-    lateinit var instance: Main
-
     @Mod.EventHandler
     fun preinit(event: FMLPreInitializationEvent) {
         // TODO: register world generator
@@ -42,11 +33,19 @@ object NewFrontiers {
 
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent) {
+
     }
 
     @Mod.EventHandler
     fun postinit(event: FMLPostInitializationEvent) {
 
+    }
+
+    @Mod.EventHandler
+    fun start(event: FMLServerStartingEvent) {
+        for (command in Commands.values()) {
+            event.registerServerCommand(command.value)
+        }
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID)

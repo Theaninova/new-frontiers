@@ -1,14 +1,9 @@
 package de.wulkanat.www.new_frontiers.abstract_helpers
 
-import de.wulkanat.www.new_frontiers.NewFrontiers
+import de.wulkanat.www.new_frontiers.MOD_ID
 import de.wulkanat.www.new_frontiers.proxy.registerItemRenderer
 import net.minecraft.creativetab.CreativeTabs
-import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
-import net.minecraft.util.ActionResult
-import net.minecraft.util.EnumHand
-import net.minecraft.world.World
 
 abstract class NFItem(
     name: String,
@@ -16,7 +11,7 @@ abstract class NFItem(
     val hasCustomModel: Boolean = true
 ) : Item() {
     init {
-        setRegistryName("${NewFrontiers.MOD_ID}:$name")
+        setRegistryName("${MOD_ID}:$name")
         this.translationKey = name
         this.creativeTab = creativeTab
     }

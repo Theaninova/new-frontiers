@@ -13,7 +13,5 @@ class DimensionSpace : NFDimension(
     surfaceDimension = false,
     biomeProvider = BiomeProviderSingle(Biomes.DEEP_SPACE.value)
 ) {
-    override fun createChunkGenerator(): IChunkGenerator {
-        return VoidChunkGenerator(this.world)
-    }
+    override fun createChunkGenerator() = VoidChunkGenerator(this.world)
 }

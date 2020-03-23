@@ -1,9 +1,8 @@
 package de.wulkanat.www.new_frontiers.abstract_helpers
 
-import de.wulkanat.www.new_frontiers.NewFrontiers
+import de.wulkanat.www.new_frontiers.MOD_ID
 import de.wulkanat.www.new_frontiers.proxy.registerItemRenderer
 import net.minecraft.block.Block
-import net.minecraft.block.BlockHorizontal
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
 import net.minecraft.block.properties.PropertyDirection
@@ -41,7 +40,7 @@ abstract class NFBlock(
             blockResistance = hardness * 5.0f
         }
 
-        setRegistryName("${NewFrontiers.MOD_ID}:$name")
+        setRegistryName("${MOD_ID}:$name")
         this.translationKey = name
         this.lightValue = lightLevel
         this.lightOpacity = lightOpacity
